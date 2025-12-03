@@ -115,7 +115,7 @@ int disassemble(FILE *input, FILE *output) {
         }
 
         // Calculate operand
-        fprintf(output, "%02d%01d%06d\n", operation, mode, operand_int *100+ decimal_part);        
+        fprintf(output, "%02d%01d%06d", operation, mode, operand_int *100+ decimal_part);        
         fflush(output); // Ensure data is written immediately
     }
     printf("Finished reading file, check out.\n");
