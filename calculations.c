@@ -23,7 +23,7 @@ typedef enum {
 
 static int memory[1000] = {0}; // Simple memory model
 
-int read_instrcution(FILE *input, Registers reg)
+int read_instruction(FILE *input, Registers reg)
 {
     int operation;
     int mode;
@@ -86,24 +86,4 @@ int read_instrcution(FILE *input, Registers reg)
         return -1;
     }
     return 0;
-}
-
-int I_ADD(int a, int b) {
-    return a + b;
-}
-
-int I_SUB(int a, int b) {
-    return a - b;
-}
-
-int I_MUL(int a, int b) {
-    return a * b;
-}
-
-int I_DIV(int a, int b) {
-    if (b == 0) {
-        fprintf(stderr, "Error: Division by zero.\n");
-        exit(EXIT_FAILURE);
-    }
-    return a / b;
 }
