@@ -19,6 +19,11 @@ The next step is to upgrade the proof of concept and refactor to the final Episo
 2. Port to Python for Python practice
 
 # Other information:
-The instruction set that I am following can be found and referenced below
+The instruction sets that I am following can be found and referenced below
+
+Episode 3's instruction set (Demo)
+![InstructionSet](./Documents/InstructionSetEP3.PNG)
+
+Episode 7's instruction set (Goal)
 ![InstructionSet](./Documents/InstructionSetEP7.PNG)
 
