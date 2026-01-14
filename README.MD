@@ -19,5 +19,6 @@ The next step is to upgrade the proof of concept and refactor to the final Episo
 2. Port to Python for Python practice
 
 # Other information:
-The instruction set that I am following can be found below. Click the link and then click Reference.
-https://sandbox.thesimplejoyofprogramming.com/?episode=7
+The instruction set that I am following can be found and referenced below
+![InstructionSet)](Documents\InstructionSetEP7.PNG)
+
