@@ -5,7 +5,10 @@ the course of the first seven videos.
 
 # Current phase as of 1/7/2026:
 The proof of concept is working, although the simulation cannot do any calculations yet; input, conversion, and output are working for a very basic instruction set compiler and disassembler as provided by Episode 3.
-The next step is to use the small demo I made from episode 3 to execute actual instructions. Afterwards, upgrade and refactor the demo to the final Episode 7's instructions.
+
+The next step is to use the small demo I made from episode 3 to execute actual instructions. This will require me looking into makefiles and such as the codebase is starting to get unruly.
+
+Afterwards, upgrade and refactor the demo to the final Episode 7's instructions.
 
 # Goals
 1. To be able to write characters to the computer as Input and have something happen

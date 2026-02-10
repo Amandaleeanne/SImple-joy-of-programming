@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+// #include "dictonary.c" //Messing with using a dict instead of a hardcoded map
 
 int disassemble(FILE *input, FILE *output);
 int assemble(FILE *input, FILE *output);
@@ -8,19 +9,63 @@ int assemble(FILE *input, FILE *output);
 typedef enum {
     INP = 0,
     OUT = 1,
-    ADD = 2,
-    SUB = 3,
-    MUL = 4,
-    DIV = 5
+    ADD = 10,
+    SUB = 11,
+    MUL = 12,
+    DIV = 13,
+    MOD = 14,
+    EQU = 30,
+    GRE = 31,
+    LES = 32,
+    EGR = 33,
+    ELE = 34,
+    JUM = 40
 } Opcode;
 
-char opcode_map[6][4] = {
+char opcode_map[41][4] = {
     "INP",
     "OUT",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",    
+    "NUL",    
+    "NUL",
+    "NUL",        
     "ADD",
     "SUB",
     "MUL",
     "DIV",
+    "MOD",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "GRE",
+    "LES",
+    "EQU",
+    "EGR",
+    "ELE",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "NUL",
+    "JUM",
+
 };
 
 int memory[1000] = {0};
@@ -69,6 +114,7 @@ int main(int argc, char const *argv[])
     {
         printf("Running code...\n");
         rewind(output);
+        //TODO: Actually run
     }
 
     fclose(input);
@@ -100,13 +146,20 @@ int disassemble(FILE *input, FILE *output) {
         operation = -1;
         mode = -1;
         operand = 0;
+
+        switch (mode_char)
+        {
+        case 'I':
+            mode = 0; // Immediate Mode
+            break;
+        case 'M':
+            mode = 1;
+            break;
+        case 'R':
+            mode = 2;
+            break;
         
-        // Determine mode
-        if (mode_char == 'I') {
-            mode = 0; // Immediate mode
-        } else if (mode_char == 'M') {
-            mode = 1; // Memory mode
-        } else {
+        default:
             fprintf(stderr, "Error: invalid mode character '%c'. Skipping line.\n", mode_char);
             code += 2;
             continue;

@@ -3,15 +3,23 @@ I_ADD // Add given number to the register
 I_SUB // subtract given number from the register
 I_MUL // multiply given number from the register
 I_DIV // divide given number from the register
+I_MOD // modulo (give remainder) from the register
 
 M_INP // Input register to provided memory address
 M_ADD // from given address, add to register
 M_SUB // from given address, subtract from register
 M_MUL // from given address, multiply the register
 M_DIV // from given address, divide the register
+I_MOD // from given addres, module (give remainder) the register
 
-I_EQ // from given adress, check if number given is equal to that address
-I_GR // from given adress, check if number given is greater to that address
+I_EQU // from given adress, check if number given is equal to that address
+I_GRE // from given adress, check if number given is greater to that address
+I_LES // from given adress, check if number given is less than that address
+I_EGR // from given adress, check if number given is equal to or greater than that address
+I_ELE // from given adress, check if number given is less than or equal to that address
+
+
+I_JUM
 
 
 Example instruxtion:
