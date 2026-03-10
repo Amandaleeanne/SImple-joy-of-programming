@@ -124,9 +124,11 @@ int main(int argc, char const *argv[])
 
 /**
  * turns assembly code into its correct number format
+ * NOTE: CURRENTLY IN THE MIDDLE OF A REFACTOR FOR NEW INPUT
  */
 int disassemble(FILE *input, FILE *output) {
     char mode_char;
+    char register_selection;
     char opcode_str[4];
     int  operand_int;
     int  decimal_part = 0;
@@ -135,14 +137,34 @@ int disassemble(FILE *input, FILE *output) {
     while (fgets(line, 32, input) != NULL) //file scan to consume the line
     {
         decimal_part = 0; //reset
-        // Parse the line (one with decimal and one without)
-        if (sscanf(line, "%c_%3s %d.%d", &mode_char, opcode_str, &operand_int, &decimal_part) < 3
-        || sscanf(line, "%c_%3s %d", &mode_char, opcode_str, &operand_int) < 3) {
+        int failure = 0;
+        // Parse the line (one with decimal and one without and one with a register and one without)
+            //note to self: most common will be 3 inputs with an int, then 3 inputs with a float, then two inputs
+        if(sscanf(line, "%c_%3s %d.%d", &mode_char, opcode_str, &operand_int, &decimal_part) < 3) //incorrect less than, fix
+        {
+            failure = 1;
+        }else if (sscanf(line, "%c_%3s %d", &mode_char, opcode_str, &operand_int) < 3) //incorrect less than, fix
+        {
+            failure = 1;
+        }else if (sscanf(line, "%c_%3s %d", &mode_char, opcode_str, &operand_int) < 3)//2 input, positive jump, rescan input
+        {
+            //make it complex to double check the opcode_str is JUM
+        }else if(sscanf(line, "%c_%3s -%d", &mode_char, opcode_str, &operand_int) < 3) //2 input, negitive jump, rescan input
+        {
+            failure = 1;
+        }else if (sscanf(line, "%c_%3s %c", &mode_char, opcode_str, &operand_int) < 3) //2 input, register ONLY, rescan input
+        {
+            failure = 1;
+        }//else if (the input is a comment, continue)
+        
+        if (failure) {
                 fprintf(stderr, "Error: invalid line format '%s'. Skipping line.\n", line);
                 code = 1;
                 continue;
             }
-
+        //Breifly check to see if syntax errors were made
+            //TODO: if the input scanned was two, make sure that numbers are valid 
+            //and if its not JUM only a register is given (R mode)
         operation = -1;
         mode = -1;
         operand = 0;
@@ -179,7 +201,7 @@ int disassemble(FILE *input, FILE *output) {
         }
 
         // Calculate operand
-        fprintf(output, "%02d%01d%06d", operation, mode, operand_int *100+ decimal_part);        
+        fprintf(output, "%02d%01d%06d", operation, mode, operand_int *100+ decimal_part);  //TODO: change write      
         fflush(output); // Ensure data is written immediately (testing)
     }
     printf("Finished reading file, check out.\n");
