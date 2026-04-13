@@ -18,7 +18,7 @@ Afterwards, upgrade and refactor the demo to the final Episode 7's instructions.
 4. To follow the instruction set given in the Course to the T and have an understanding of the computer through a high-level, programmable simulation
 
 ## Stretch:
-1. Make a visual GUI instead of using the CLI for the code
+1. Rewrite the project idea for a visual GUI instead of using the CLI for the code using C-lay. Or, create a prettyPrint-esque CLI GUI.
 2. Port to Python for Python practice
 
 # Other information:
